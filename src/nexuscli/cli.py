@@ -14,6 +14,10 @@ Usage:
          [--write=<w_policy>]
   nexus3 repo create hosted (bower|npm|nuget|pypi|raw|rubygems) <repo_name>
          [--blob=<store_name>] [--write=<w_policy>] [--strict-content]
+  nexus3 repo create hosted apt <repo_name>
+         [--blob=<store_name>] [--write=<w_policy>]
+         [--strict-content] [--apt-distribution=<apt_distribution>]
+         [--apt-signing-key=<apt_signing_key>] [--apt-signing-passphrase=<apt_signing_passphrase>]
   nexus3 repo create hosted yum <repo_name>
          [--blob=<store_name>] [--write=<w_policy>]
          [--depth=<repo_depth>] [--strict-content]
@@ -44,6 +48,9 @@ Options:
   --strict-content      Enable strict content type validation
   --version=<v_policy>  Accepted: release, snapshot, mixed [default: release]
   --write=<w_policy>    Accepted: allow, allow_once, deny [default: allow_once]
+  --apt-distribution=<apt_distribution> Specify debian distribution
+  --apt-signing-key=<apt_signing_key> Provide apt signing key
+  --apt-signing-passphrase=<apt_signing_passphrase> Provide apt signing key [default: '']
 
 Commands:
   download      Download an artefact or a directory to local file system
@@ -212,6 +219,9 @@ def cmd_repo_create(nexus_client, args):
         version_policy=args.get('--version'),
         write_policy=args.get('--write'),
         layout_policy=args.get('--layout'),
+        apt_distribution=args.get('--apt-distribution'),
+        apt_signing_key=args.get('--apt-signing-key'),
+        apt_signing_passphrase=args.get('--apt-signing-passphrase'),
     )
     nexus_client.repositories.create(r)
 

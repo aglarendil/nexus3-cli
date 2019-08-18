@@ -223,6 +223,17 @@ class Repository(object):
                 'layoutPolicy': self._raw['layout_policy'],
             }
 
+    def _configuration_add_apt_attr(self, repo_config):
+        if self._raw['format'] == 'apt':
+            repo_config['attributes']['apt'] = {
+                'distribution': self._raw['apt_distribution']
+            }
+            repo_config['attributes']['aptSigning'] = {
+                'keypair': self._raw['apt_signing_key'],
+                'passphrase': self._raw['apt_signing_passphrase'],
+            }
+
+
     def _configuration_hosted(self):
         repo_config = self._configuration_common()
         repo_config['attributes']['storage'].update({
@@ -233,6 +244,7 @@ class Repository(object):
         })
 
         self._configuration_add_maven_attr(repo_config)
+        self._configuration_add_apt_attr(repo_config)
 
         return repo_config
 

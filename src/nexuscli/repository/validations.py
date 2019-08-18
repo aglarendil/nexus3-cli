@@ -10,9 +10,9 @@ except ImportError:
 KNOWN_TYPES = ['group', 'hosted', 'proxy']
 KNOWN_FORMATS = [
     'bower', 'docker', 'gitlfs', 'maven', 'npm', 'nuget', 'pypi', 'raw',
-    'rubygems', 'yum']
+    'rubygems', 'yum', 'apt']
 SUPPORTED_FORMATS = [
-    'bower', 'maven', 'npm', 'nuget', 'pypi', 'raw', 'rubygems', 'yum']
+    'bower', 'maven', 'npm', 'nuget', 'pypi', 'raw', 'rubygems', 'yum', 'apt', 'raw']
 SUPPORTED_TYPES = ['hosted', 'proxy']
 LAYOUT_POLICIES = ['PERMISSIVE', 'STRICT']
 VERSION_POLICIES = ['RELEASE', 'SNAPSHOT', 'MIXED']
