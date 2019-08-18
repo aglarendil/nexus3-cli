@@ -130,7 +130,7 @@ class NexusClient(object):
 
         :return: the URL.
         """
-        url = urljoin(self.base_url, '/service/rest/')
+        url = urljoin(self.base_url, 'service/rest/')
         return urljoin(url, self._api_version + '/')
 
     def write_config(self):
@@ -190,6 +190,7 @@ class NexusClient(object):
             config_attrs['nexus_url'], config_attrs['nexus_verify'])
 
     def _request(self, method, endpoint, **kwargs):
+
         """
         Performs a request to the Nexus service URL.
 
