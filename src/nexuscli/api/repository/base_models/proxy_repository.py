@@ -36,6 +36,8 @@ class ProxyRepository(Repository):
         self.remote_username: Optional[str] = kwargs.get('remote_username')
         self.remote_password: Optional[str] = kwargs.get('remote_password')
         self.remote_auth_type: Optional[str] = kwargs.get('remote_auth_type')
+        self.use_trust_store: Optional[str] = kwargs.get('use_trust_store', False)
+
 
         super().__init__(*args, **kwargs)
 
@@ -64,6 +66,7 @@ class ProxyRepository(Repository):
                 'connection': {
                     'blocked': False,
                     'autoBlock': self.auto_block,
+                    'connection': {'useTrustStore': self.use_trust_store}
                 },
             },
             'proxy': {
