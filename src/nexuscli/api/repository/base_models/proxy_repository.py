@@ -42,6 +42,7 @@ class ProxyRepository(Repository):
                  remote_auth_type=None,
                  remote_username=None,
                  remote_password=None,
+                 use_trust_store=False,
                  **kwargs):
         self.remote_url = remote_url
         self.auto_block = auto_block
@@ -52,6 +53,7 @@ class ProxyRepository(Repository):
         self.remote_username = remote_username
         self.remote_password = remote_password
         self.remote_auth_type = remote_auth_type
+        self.use_trust_store = use_trust_store
 
         super().__init__(name, **kwargs)
 
@@ -80,6 +82,7 @@ class ProxyRepository(Repository):
             'httpclient': {
                 'blocked': False,
                 'autoBlock': self.auto_block,
+                'connection': {'useTrustStore': self.use_trust_store}
             },
             'proxy': {
                 'remoteUrl': self.remote_url,
