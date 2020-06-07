@@ -33,6 +33,9 @@ class AptHostedRepository(_AptRepository, HostedRepository):
         super().__init__(*args, **kwargs)
         self.gpg_keypair: Optional[str] = kwargs.get('gpg_keypair')
         self.passphrase: Optional[str] = kwargs.get('passphrase')
+        self.label = kwargs.pop('label', None)
+        self.origin = kwargs.pop('origin', None)
+
 
     @property
     def configuration(self):
@@ -43,6 +46,12 @@ class AptHostedRepository(_AptRepository, HostedRepository):
                 'passphrase': self.passphrase
             }
         })
+
+        if self.label is not None:
+            repo_config['attributes']['apt']['label'] = self.label
+
+        if self.origin is not None:
+            repo_config['attributes']['apt']['origin'] = self.origin
 
         return repo_config
 
